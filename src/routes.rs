@@ -1,6 +1,9 @@
 use std::sync::Arc;
 
-use crate::controllers::{handler_header, handler_html, handler_path, handler_query};
+use crate::controllers::{
+    rest::{handler_header, handler_path, handler_query},
+    serve_static::handler_html,
+};
 use crate::types::MyConfig;
 use axum::{routing::get, Router};
 

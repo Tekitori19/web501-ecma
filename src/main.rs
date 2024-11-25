@@ -1,7 +1,6 @@
-use std::sync::Arc;
-
 use anyhow::Ok;
 use axum::Router;
+use std::sync::Arc;
 
 mod controllers;
 mod models;
@@ -19,7 +18,7 @@ async fn main() -> anyhow::Result<()> {
 
     let pool = sqlx::SqlitePool::connect(&db_url).await.unwrap();
 
-    let users = sqlx::query_as::<_, models::User>("SELECT * FROM users")
+    let users = sqlx::query_as::<_, models::Products>("SELECT * FROM products")
         .fetch_all(&pool)
         .await
         .unwrap();

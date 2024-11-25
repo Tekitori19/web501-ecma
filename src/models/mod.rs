@@ -1,9 +1,10 @@
 use sqlx::FromRow;
 
 #[derive(Debug, FromRow)]
-pub struct User {
-    // #[allow(dead_code)]
-    email: String,
-    // #[allow(dead_code)]
-    password: String,
+pub struct Products {
+    name: String,
+    cate_id: i32,
+    price: f64,
+    detail: String,
+    image: String,
 }
