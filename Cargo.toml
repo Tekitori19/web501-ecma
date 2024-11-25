@@ -7,6 +7,8 @@ edition = "2021"
 axum = "0.7.9"
 reqwest = { version = "0.12.9", features = ["json"] }
 tokio = { version = "1.41.1", features = ["full"] }
+serde = { version = "1.0.215", features = ["derive"] }
+serde_json = "1.0.133"
 sqlx ={ version = "0.8.2", features = ["runtime-tokio", "sqlite"]} #SQLX for Database
 dotenv = "0.15.0"
 anyhow = "1.0.93"

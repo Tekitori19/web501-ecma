@@ -1,17 +1,10 @@
-use std::sync::Arc;
+use crate::controllers::{rest, view};
+use axum::{Extension, Router};
+use sqlx::SqlitePool;
 
-use crate::controllers::{
-    rest::{handler_header, handler_path, handler_query},
-    serve_static::handler_html,
-};
-use crate::types::MyConfig;
-use axum::{routing::get, Router};
-
-pub fn init(config: Arc<MyConfig>) -> Router {
-    return Router::new()
-        .route("/", get(handler_html))
-        .route("/query", get(handler_query))
-        .route("/header", get(handler_header))
-        .route("/:id", get(handler_path))
-        .with_state(config);
+pub fn router_init(connection_pool: SqlitePool) -> Router {
+    Router::new()
+        .nest("/api", rest::rest_service())
+        .nest("/", view::view_service())
+        .layer(Extension(connection_pool))
 }

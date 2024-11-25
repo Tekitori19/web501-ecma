@@ -1,0 +1,38 @@
+#host
+@host = http://127.0.0.1:8080
+
+#id
+@idValid =  12
+@idNotValid = -12
+@idStr = adc_pro
+
+#query
+@query = name="Dwcks"&role=adc
+
+###
+GET {{host}}
+# route: /
+
+###
+GET {{host}}/api/{{idValid}}
+# route: /:id
+
+###
+GET {{host}}/api/product
+# route: /api/product
+
+###
+GET {{host}}/api/product/cate/1
+# route: /api/product/cate/:id
+
+###
+GET {{host}}/api/product/5
+# route: /api/product/:id
+
+###
+GET {{host}}/api/query?{{query}}
+# route: /query
+
+###
+GET {{host}}/api/header
+# route: /header
