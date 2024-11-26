@@ -8,6 +8,7 @@
 
 #query
 @query = name="Dwcks"&role=adc
+@query_price = min=1&max=200
 
 ###
 GET {{host}}
@@ -28,6 +29,10 @@ GET {{host}}/api/product/cate/1
 ###
 GET {{host}}/api/product/5
 # route: /api/product/:id
+
+###
+GET {{host}}/api/price?{{query_price}}
+# route: /api/price
 
 ###
 GET {{host}}/api/query?{{query}}

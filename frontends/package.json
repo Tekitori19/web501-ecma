@@ -1,0 +1,18 @@
+{
+  "name": "vanilla-ecommerce",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"json-server --watch db.json --port 3000\" \"vite\"",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4",
+    "concurrently": "^8.2.2"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

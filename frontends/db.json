@@ -1,0 +1,78 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Electronics"
+    },
+    {
+      "id": 2,
+      "name": "Clothing"
+    },
+    {
+      "id": 3,
+      "name": "Books"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop",
+      "cate_id": 1,
+      "price": 999.99,
+      "detail": "High-performance laptop",
+      "image": "https://picsum.photos/200/300"
+    },
+    {
+      "id": 2,
+      "name": "T-Shirt",
+      "cate_id": 2,
+      "price": 19.99,
+      "detail": "Cotton T-Shirt",
+      "image": "https://picsum.photos/200/300"
+    },
+    {
+      "id": 3,
+      "name": "JavaScript Book",
+      "cate_id": 3,
+      "price": 29.99,
+      "detail": "Learn JavaScript",
+      "image": "https://picsum.photos/200/300"
+    }
+  ],
+  "orders": [
+    {
+      "customer_name": "ad",
+      "customer_email": "ad@gmail.com",
+      "customer_phone_number": "111111111",
+      "customer_address": "admin",
+      "created_date": "2024-11-25T03:08:23.407Z",
+      "status": "pending",
+      "id": 1
+    },
+    {
+      "customer_name": "ad",
+      "customer_email": "corclan19@gmail.com",
+      "customer_phone_number": "011111111",
+      "customer_address": "137 Nguyễn Thị Thập",
+      "created_date": "2024-11-25T20:10:07.564Z",
+      "status": "pending",
+      "id": 2
+    }
+  ],
+  "order_details": [
+    {
+      "order_id": 1,
+      "product_id": 1,
+      "quantity": 2,
+      "unit_price": 999.99,
+      "id": 1
+    },
+    {
+      "order_id": 2,
+      "product_id": 1,
+      "quantity": 1,
+      "unit_price": 999.99,
+      "id": 2
+    }
+  ]
+}

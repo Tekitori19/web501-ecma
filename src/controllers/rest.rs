@@ -1,4 +1,7 @@
-use crate::models::products::{all_products, product_by_id, products_by_category};
+use crate::models::products::{
+    all_products, product_by_id, products_by_category, products_by_price,
+};
+use crate::types::param::PriceLimit;
 use crate::types::product::Product;
 use axum::{
     extract::{Path, Query},
@@ -16,6 +19,7 @@ pub fn rest_service() -> Router {
         .route("/query", get(handler_query))
         .route("/header", get(handler_header))
         .route("/:id", get(handler_path))
+        .route("/price", get(get_price))
         .route("/product", get(get_all_products))
         .route("/product/cate/:id", get(get_products_by_category))
         .route("/product/:id", get(get_products_by_id))
@@ -33,9 +37,16 @@ pub async fn handler_header(header: HeaderMap) -> Html<String> {
     Html(format!("hi {header:#?} "))
 }
 
-// pub async fn get_all_products() -> Html<String> {
-//     Html("hi".to_string())
-// }
+async fn get_price(
+    Extension(connect): Extension<SqlitePool>,
+    Query(params): Query<PriceLimit>,
+) -> Result<Json<Vec<Product>>, StatusCode> {
+    if let Ok(products) = products_by_price(&connect, params.min, params.max).await {
+        Ok(Json(products))
+    } else {
+        Err(StatusCode::SERVICE_UNAVAILABLE)
+    }
+}
 
 async fn get_all_products(
     Extension(connect): Extension<SqlitePool>,

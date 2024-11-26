@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Store</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>E-commerce Store</h1>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/cart.html">Cart (<span id="cart-count">0</span>)</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="filters">
+            <select id="category-filter">
+                <option value="">All Categories</option>
+            </select>
+            <div class="price-filter">
+                <input type="number" id="min-price" placeholder="Min Price">
+                <input type="number" id="max-price" placeholder="Max Price">
+                <button id="apply-filters">Apply Filters</button>
+            </div>
+        </div>
+
+        <div id="products" class="products-grid"></div>
+    </main>
+
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>

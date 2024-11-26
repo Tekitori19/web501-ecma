@@ -8,6 +8,20 @@ pub async fn all_products(connection_pool: &SqlitePool) -> Result<Vec<Product>> 
         .await?)
 }
 
+pub async fn products_by_price(
+    connection_pool: &SqlitePool,
+    min: f64,
+    max: f64,
+) -> Result<Vec<Product>> {
+    Ok(
+        sqlx::query_as::<_, Product>("Select * from products where price between $1 and $2")
+            .bind(min)
+            .bind(max)
+            .fetch_all(connection_pool)
+            .await?,
+    )
+}
+
 pub async fn products_by_category(connection_pool: &SqlitePool, id: i32) -> Result<Vec<Product>> {
     Ok(
         sqlx::query_as::<_, Product>("SELECT * FROM products WHERE cate_id=$1")
