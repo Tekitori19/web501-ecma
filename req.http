@@ -15,6 +15,10 @@ GET {{host}}
 # route: /
 
 ###
+GET {{host}}/static
+# route: /static
+
+###
 GET {{host}}/api/{{idValid}}
 # route: /:id
 

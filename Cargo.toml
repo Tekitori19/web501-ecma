@@ -12,3 +12,5 @@ serde_json = "1.0.133"
 sqlx ={ version = "0.8.2", features = ["runtime-tokio", "sqlite"]} #SQLX for Database
 dotenv = "0.15.0"
 anyhow = "1.0.93"
+tower = { version = "0.5.1", features = ["util"] }
+tower-http = { version = "0.6.1", features = ["fs", "trace"] }
