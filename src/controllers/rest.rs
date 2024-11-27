@@ -1,6 +1,8 @@
+use crate::models::categories::all_categories;
 use crate::models::products::{
     all_products, product_by_id, products_by_category, products_by_price,
 };
+use crate::types::category::Category;
 use crate::types::param::PriceLimit;
 use crate::types::product::Product;
 use axum::{
@@ -21,6 +23,7 @@ pub fn rest_service() -> Router {
         .route("/:id", get(handler_path))
         .route("/price", get(get_price))
         .route("/product", get(get_all_products))
+        .route("/product/cate", get(get_all_products_by_category))
         .route("/product/cate/:id", get(get_products_by_category))
         .route("/product/:id", get(get_products_by_id))
 }
@@ -75,6 +78,16 @@ async fn get_products_by_id(
 ) -> Result<Json<Product>, StatusCode> {
     if let Ok(products) = product_by_id(&connect, id).await {
         Ok(Json(products))
+    } else {
+        Err(StatusCode::SERVICE_UNAVAILABLE)
+    }
+}
+
+async fn get_all_products_by_category(
+    Extension(connect): Extension<SqlitePool>,
+) -> Result<Json<Vec<Category>>, StatusCode> {
+    if let Ok(cate) = all_categories(&connect).await {
+        Ok(Json(cate))
     } else {
         Err(StatusCode::SERVICE_UNAVAILABLE)
     }

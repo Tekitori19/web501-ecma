@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce Store</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-    <nav>
-        <div class="container">
-            <h1>E-commerce Store</h1>
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/cart.html">Cart (<span id="cart-count">0</span>)</a>
-            </div>
-        </div>
-    </nav>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Coffee Masters</title>
 
-    <main class="container">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="preload" href="components/DetailsPage.css" as="stylesheet">
+
+    <script src="app.js" defer type="module"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="app.webmanifest">
+    <link rel="apple-touch-icon" href="images/icons/icon.png">
+    <link rel="icon" href="images/icons/icon.png">
+</head>
+
+<body>
+    <header>
+        <h1><img src="images/logo.svg" width="140" alt="Coffee Masters"></h1>
+        <nav>
+            <a class="navlink material-symbols-outlined" id="linkHome" href="/">
+                    local_cafe
+            </a>
+            <a class="navlink material-symbols-outlined" id="linkOrder" href="/order">
+                    shopping_cart
+            </a>
+            <span id="badge" hidden></span>
+        </nav>
+    </header>
+
+    <main></main>
+
+    <template id="menu-page-template">
+
         <div class="filters">
             <select id="category-filter">
                 <option value="">All Categories</option>
@@ -29,9 +48,61 @@
             </div>
         </div>
 
-        <div id="products" class="products-grid"></div>
-    </main>
+        <section>
+            <ul id="menu"></ul>
+        </section>
+    </template>
 
-    <script type="module" src="/static/js/main.js"></script>
+    <template id="product-item-template">
+        <article>
+            <a href="#">
+                <img>
+                <section>
+                    <div>
+                        <h4></h4>
+                        <p class="price"><p>
+                    </div>
+                    <button>Add</button>
+                </section>
+            </a>
+        </article>
+    </template>
+
+    <template id="order-form-template">
+        <form>
+            <label for="name">Your Name</label>
+            <input name="name" required>
+            <label for="phone">Your Phone Number</label>
+            <input name="phone" type="tel">
+            <label for="email">Your Email</label>
+            <input name="email" type="email">
+            <button type="submit">Place Order</button>
+        </form>
+    </template>
+
+    <template id="details-page-template">
+        <header>   
+            <a href="#" onclick="app.router.go('/'); event.preventDefault()">&lt; Back</a>
+            <h2></h2>
+            <a></a>
+        </header>
+        <img src="">
+        <p class="description"></p>
+        <p class="price"></p>
+        <button>Add to cart</button>
+    </template>
+
+    <template id="cart-item-template">
+        <li>
+            <input type="number" min="1" step=1 class='qty'>
+            <p class='name'></p>
+            <p class='price'></p>
+            <p class='toolbar'>
+                <a href="#" class="delete-button">
+                    🗑️
+                </a>
+            </p>
+        </li>
+    </template>
 </body>
 </html>

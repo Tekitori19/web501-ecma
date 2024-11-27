@@ -27,11 +27,11 @@ GET {{host}}/api/product
 # route: /api/product
 
 ###
-GET {{host}}/api/product/cate/1
+GET {{host}}/api/product/cate
 # route: /api/product/cate/:id
 
 ###
-GET {{host}}/api/product/5
+GET {{host}}/api/product/2
 # route: /api/product/:id
 
 ###
