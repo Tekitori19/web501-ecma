@@ -17,7 +17,9 @@ async fn main() -> anyhow::Result<()> {
 
     let pool = database::init_db().await?;
 
-    let app = Router::new().merge(routes::router_init(pool)).layer(
+    let app = Router::new()
+        .merge(routes::router_init(pool))
+        .layer(
         CorsLayer::new()
             .allow_origin("http://localhost:5500".parse::<HeaderValue>().unwrap())
             .allow_origin("http://127.0.0.1:5500".parse::<HeaderValue>().unwrap())

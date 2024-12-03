@@ -26,6 +26,7 @@ pub fn rest_service() -> Router {
         .route("/product/cate", get(get_all_products_by_category))
         .route("/product/cate/:id", get(get_products_by_category))
         .route("/product/:id", get(get_products_by_id))
+        .route("/dashboard", get(get_products_by_id))
 }
 
 pub async fn handler_path(Path(id): Path<u32>) -> Html<String> {
