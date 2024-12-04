@@ -1,8 +1,11 @@
 use crate::models::categories::all_categories;
+// use crate::models::dashboard::{money, product};
+use crate::models::orders::all_orders;
 use crate::models::products::{
     all_products, product_by_id, products_by_category, products_by_price,
 };
 use crate::types::category::Category;
+use crate::types::order::Order;
 use crate::types::param::PriceLimit;
 use crate::types::product::Product;
 use axum::{
@@ -13,6 +16,7 @@ use axum::{
 };
 use axum::{routing::get, Router};
 use reqwest::StatusCode;
+use sqlx::sqlite::SqliteRow;
 use sqlx::SqlitePool;
 use std::collections::HashMap;
 
@@ -21,12 +25,13 @@ pub fn rest_service() -> Router {
         .route("/query", get(handler_query))
         .route("/header", get(handler_header))
         .route("/:id", get(handler_path))
+        .route("/order", get(get_order))
         .route("/price", get(get_price))
         .route("/product", get(get_all_products))
         .route("/product/cate", get(get_all_products_by_category))
         .route("/product/cate/:id", get(get_products_by_category))
         .route("/product/:id", get(get_products_by_id))
-        .route("/dashboard", get(get_products_by_id))
+    // .route("/dashboard/product", get(get_dashboard_product))
 }
 
 pub async fn handler_path(Path(id): Path<u32>) -> Html<String> {
@@ -93,3 +98,33 @@ async fn get_all_products_by_category(
         Err(StatusCode::SERVICE_UNAVAILABLE)
     }
 }
+
+async fn get_order(
+    Extension(connect): Extension<SqlitePool>,
+) -> Result<Json<Vec<Order>>, StatusCode> {
+    if let Ok(cate) = all_orders(&connect).await {
+        Ok(Json(cate))
+    } else {
+        Err(StatusCode::SERVICE_UNAVAILABLE)
+    }
+}
+
+// async fn get_dashboard_product(
+//     Extension(connect): Extension<SqlitePool>,
+// ) -> Result<Json<Vec<SqliteRow>>, StatusCode> {
+//     if let Ok(cate) = product(&connect).await {
+//         Ok(Json(cate))
+//     } else {
+//         Err(StatusCode::SERVICE_UNAVAILABLE)
+//     }
+// }
+//
+// async fn get_dashboard_money(
+//     Extension(connect): Extension<SqlitePool>,
+// ) -> Result<Json<Vec<SqliteRow>>, StatusCode> {
+//     if let Ok(cate) = money(&connect).await {
+//         Ok(Json(cate))
+//     } else {
+//         Err(StatusCode::SERVICE_UNAVAILABLE)
+//     }
+// }

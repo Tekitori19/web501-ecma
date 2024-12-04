@@ -36,25 +36,11 @@
                 <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                     <thead>
                         <tr class="bg-gray-200">
-                            <th class="py-3 px-6 text-left">Tên sản phẩm</th>
-                            <th class="py-3 px-6 text-left">Danh mục</th>
-                            <th class="py-3 px-6 text-left">Giá</th>
-                            <th class="py-3 px-6 text-left">Hành động</th>
+                            <th class="py-3 px-6 text-left">ID</th>
+                            <th class="py-3 px-6 text-left">Tên</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="py-3 px-6">Smartphone</td>
-                            <td class="py-3 px-6">Electronics</td>
-                            <td class="py-3 px-6">$699.99</td>
-                            <td class="py-3 px-6"><button class="text-blue-600 hover:text-blue-800">Sửa</button> | <button class="text-red-600 hover:text-red-800">Xóa</button></td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 px-6">Laptop</td>
-                            <td class="py-3 px-6">Electronics</td>
-                            <td class="py-3 px-6">$999.99</td>
-                            <td class="py-3 px-6"><button class="text-blue-600 hover:text-blue-800">Sửa</button> | <button class="text-red-600 hover:text-red-800">Xóa</button></td>
-                        </tr>
+                    <tbody id="cate-body">
                     </tbody>
                 </table>
             </div>
@@ -67,11 +53,13 @@
                         <tr class="bg-gray-200">
                             <th class="py-3 px-6 text-left">Tên khách hàng</th>
                             <th class="py-3 px-6 text-left">Địa chỉ</th>
+                            <th class="py-3 px-6 text-left">Email</th>
+                            <th class="py-3 px-6 text-left">Số điện thoại</th>
                             <th class="py-3 px-6 text-left">Ngày tạo</th>
                             <th class="py-3 px-6 text-left">Trạng thái</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="order-body">
                         <tr>
                             <td class="py-3 px-6">John Doe</td>
                             <td class="py-3 px-6">123 Main St</td>
@@ -104,6 +92,41 @@
 </div>
 
 <script>
+fetch('http://127.0.0.1:8080/api/product/cate')
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.querySelector('#cate-body');
+            tbody.innerHTML = ''; // Xóa nội dung cũ
+
+            data.forEach(category => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-3 px-6">${category.id}</td>
+                    <td class="py-3 px-6">${category.name}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        });
+
+        fetch('http://127.0.0.1:8080/api/order')
+    .then(response => response.json())
+    .then(data => {
+        const tbody = document.querySelector('#order-body');
+        tbody.innerHTML = ''; // Xóa nội dung cũ
+
+        data.forEach(order => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="py-3 px-6">${order.customer_name}</td>
+                <td class="py-3 px-6">${order.customer_address}</td>
+                <td class="py-3 px-6">${order.customer_email}</td>
+                <td class="py-3 px-6">${order.customer_phone_number}</td>
+                <td class="py-3 px-6">${order.created_date}</td>
+                <td class="py-3 px-6">${order.status}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    });
     // Thống kê số lượng sản phẩm được đặt mua
     const quantityData = {
         labels: ['Smartphone', 'Laptop', 'Novel', 'T-Shirt'],

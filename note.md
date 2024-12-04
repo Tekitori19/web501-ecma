@@ -60,9 +60,36 @@ Trang quản trị
      GROUP BY product_id;
      ```
 
+     ```sql
+        SELECT 
+            p.product_name,
+            SUM(od.quantity) AS total_quantity
+        FROM 
+            order_details od
+        JOIN 
+            products p ON od.product_id = p.id
+        GROUP BY 
+            p.product_name
+        ORDER BY 
+            total_quantity DESC;
+     ```
    - Thống kê doanh thu:
      ```sql
      SELECT strftime('%Y-%m', created_date) AS month, SUM(quantity * unit_price) AS total_revenue
      FROM orders
      JOIN order_details ON orders.id = order_details.order_id
      GROUP BY month;
+
+```sql
+SELECT 
+    p.product_name,
+    SUM(od.quantity * od.unit_price) AS total_revenue
+FROM 
+    order_details od
+JOIN 
+    products p ON od.product_id = p.id
+GROUP BY 
+    p.product_name
+ORDER BY 
+    total_revenue DESC;
+```

@@ -23,6 +23,10 @@ GET {{host}}/api/{{idValid}}
 # route: /:id
 
 ###
+GET {{host}}/api/order
+# route: /api/order
+
+###
 GET {{host}}/api/product
 # route: /api/product
 
