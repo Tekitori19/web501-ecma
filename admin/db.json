@@ -1,0 +1,54 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "HOT COFFEE 2"
+    },
+    {
+      "id": "2",
+      "name": "ICED COFFEE"
+    },
+    {
+      "id": "3",
+      "name": "TEA"
+    },
+    {
+      "id": "4",
+      "name": "SNACKS"
+    }
+  ],
+  "products": [
+    {
+      "id": "11",
+      "categoryId": 1,
+      "name": "Black Americano",
+      "price": 1.5,
+      "description": "Freshly pulled shots of espresso combined with hot water.",
+      "image": "blackamericano.png"
+    },
+    {
+      "id": "12",
+      "categoryId": 1,
+      "name": "Cappuccino",
+      "price": 3.75,
+      "description": "A freshly pulled shot of espresso layered with steamed whole milk and thick rich foam.",
+      "image": "cappuccino.png"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "total": 15.25,
+      "items": [
+        {
+          "name": "Black Americano",
+          "quantity": 2
+        },
+        {
+          "name": "Croissant",
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}

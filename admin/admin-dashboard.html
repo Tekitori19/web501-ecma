@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6 text-center">Coffee Shop Admin Dashboard</h1>
+        
+        <!-- Navigation -->
+        <div class="mb-6">
+            <div class="flex space-x-4 justify-center">
+                <button onclick="showSection('categories')" class="px-4 py-2 bg-blue-500 text-white rounded">Quản lý Danh mục</button>
+                <button onclick="showSection('products')" class="px-4 py-2 bg-green-500 text-white rounded">Quản lý Sản phẩm</button>
+                <button onclick="showSection('orders')" class="px-4 py-2 bg-purple-500 text-white rounded">Quản lý Đơn hàng</button>
+                <button onclick="showSection('stats')" class="px-4 py-2 bg-red-500 text-white rounded">Thống kê</button>
+            </div>
+        </div>
+
+        <!-- Categories Section -->
+        <div id="categories" class="section hidden">
+            <div class="bg-white shadow-md rounded p-6">
+                <h2 class="text-2xl font-semibold mb-4">Quản lý Danh mục</h2>
+                
+                <!-- Category Form -->
+                <form id="categoryForm" class="mb-4">
+                    <input type="hidden" id="categoryId">
+                    <div class="mb-4">
+                        <input type="text" id="categoryName" placeholder="Tên danh mục" 
+                               class="w-full px-3 py-2 border rounded">
+                    </div>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">
+                        Thêm/Cập nhật Danh mục
+                    </button>
+                </form>
+
+                <!-- Category List -->
+                <div id="categoryList" class="mt-4">
+                    <!-- Categories will be dynamically populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <div id="products" class="section hidden">
+            <div class="bg-white shadow-md rounded p-6">
+                <h2 class="text-2xl font-semibold mb-4">Quản lý Sản phẩm</h2>
+                
+                <!-- Product Form -->
+                <form id="productForm" class="mb-4">
+                    <input type="hidden" id="productId">
+                    <div class="grid grid-cols-2 gap-4">
+                        <select id="productCategory" class="px-3 py-2 border rounded">
+                            <!-- Categories will be dynamically populated -->
+                        </select>
+                        <input type="text" id="productName" placeholder="Tên sản phẩm" 
+                               class="px-3 py-2 border rounded">
+                        <input type="number" id="productPrice" placeholder="Giá" 
+                               step="0.01" class="px-3 py-2 border rounded">
+                        <input type="text" id="productImage" placeholder="Ảnh" 
+                               class="px-3 py-2 border rounded">
+                    </div>
+                    <textarea id="productDescription" placeholder="Mô tả" 
+                              class="w-full px-3 py-2 border rounded mt-4"></textarea>
+                    <button type="submit" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">
+                        Thêm/Cập nhật Sản phẩm
+                    </button>
+                </form>
+
+                <!-- Product List -->
+                <div id="productList" class="mt-4">
+                    <!-- Products will be dynamically populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div id="orders" class="section hidden">
+            <div class="bg-white shadow-md rounded p-6">
+                <h2 class="text-2xl font-semibold mb-4">Quản lý Đơn hàng</h2>
+                
+                <div id="orderList" class="mt-4">
+                    <!-- Orders will be dynamically populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div id="stats" class="section hidden">
+            <div class="bg-white shadow-md rounded p-6">
+                <h2 class="text-2xl font-semibold mb-4">Thống kê</h2>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="text-xl mb-2">Số lượng sản phẩm bán ra</h3>
+                        <canvas id="productSalesChart"></canvas>
+                    </div>
+                    <div>
+                        <h3 class="text-xl mb-2">Thống kê Doanh thu</h3>
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
