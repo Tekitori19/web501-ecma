@@ -15,7 +15,7 @@ export class DetailsPage extends HTMLElement {
         this.root.appendChild(styles);
 
         async function loadCSS() {
-            const request = await fetch("/components/DetailsPage.css");
+            const request = await fetch("/static/components/DetailsPage.css");
             styles.textContent = await request.text();
         }
         loadCSS();
@@ -26,7 +26,7 @@ export class DetailsPage extends HTMLElement {
             this.product = await getProductById(this.dataset.productId);
             if (this.product) {
                 this.root.querySelector("h2").textContent = this.product.name;
-                this.root.querySelector("img").src = `/data/images/muffin.png`;
+                this.root.querySelector("img").src = `/static/data/images/muffin.png`;
                 this.root.querySelector(".description").textContent = this.product.detail;
                 this.root.querySelector(".price").textContent = `$ ${this.product.price.toFixed(2)} ea`;
                 this.root.querySelector("button").addEventListener("click", () => {

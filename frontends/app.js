@@ -1,14 +1,14 @@
-import Store from './services/Store.js'
-import API from './services/API.js'
-import { loadData } from './services/Menu.js';
-import Router from './services/Router.js';
+import Store from '/static/services/Store.js'
+import API from '/static/services/API.js'
+import { loadData } from '/static/services/Menu.js';
+import Router from '/static/services/Router.js';
 
 // Link my Web Components
-import { MenuPage } from './components/MenuPage.js';
-import { DetailsPage } from './components/DetailsPage.js';
-import { OrderPage } from './components/OrderPage.js';
-import ProductItem from './components/ProductItem.js';
-import CartItem from './components/CartItem.js';
+import { MenuPage } from '/static/components/MenuPage.js';
+import { DetailsPage } from '/static/components/DetailsPage.js';
+import { OrderPage } from '/static/components/OrderPage.js';
+import ProductItem from '/static/components/ProductItem.js';
+import CartItem from '/static/components/CartItem.js';
 
 window.app = {}
 app.store = Store;

@@ -9,7 +9,7 @@ export class MenuPage extends HTMLElement {
         this.root.appendChild(styles);
 
         async function loadCSS() {
-            const request = await fetch("/components/MenuPage.css");
+            const request = await fetch("/static/components/MenuPage.css");
             const css = await request.text();
             styles.textContent = css;
         }

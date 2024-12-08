@@ -16,7 +16,7 @@ export class OrderPage extends HTMLElement {
         this.root.appendChild(section);
 
         async function loadCSS() {
-            const request = await fetch("/components/OrderPage.css");
+            const request = await fetch("/static/components/OrderPage.css");
             styles.textContent = await request.text();
         }
         loadCSS();
@@ -110,7 +110,7 @@ export class OrderPage extends HTMLElement {
                 this.#user.email = "";
                 this.#user.phone = "";
                 // TODO: Send the data to the server
-                
+
             })
 
             // Set double data binding
